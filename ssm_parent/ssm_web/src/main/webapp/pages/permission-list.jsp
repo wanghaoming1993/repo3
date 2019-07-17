@@ -147,7 +147,7 @@
 								</thead>
 								<tbody>
 
-									<c:forEach items="${permissionList}" var="permission">
+									<c:forEach items="${list}" var="permission">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
 											<td>${permission.id }</td>

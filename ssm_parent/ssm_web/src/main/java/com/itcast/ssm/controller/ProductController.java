@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller()
 @RequestMapping("product")
-public class ProductController {
+public class ProductController extends FindAllController {
     @Autowired
     private IProdcutService prodcutService;
 
@@ -43,11 +43,11 @@ public class ProductController {
         @RequestParam(value ="page",required =true,defaultValue ="1") Integer page,
         @RequestParam(value = "pageSize",required =true,defaultValue ="3") Integer pageSize) throws Exception {
         List<Product> prodcuctList = prodcutService.findAllProduct(page, pageSize);
-        ModelAndView mv=new ModelAndView();
         PageInfo pi=new PageInfo(prodcuctList);
-        mv.addObject("pi",pi);
-        mv.setViewName("product-list");
-       return mv;
+
+
+
+       return find(pi,"pi","product-list");
     }
     /**
      * 存product数据

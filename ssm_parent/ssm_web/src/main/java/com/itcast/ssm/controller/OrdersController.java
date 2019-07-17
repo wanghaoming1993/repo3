@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("orders")
-public class OrdersController {
+public class OrdersController  extends FindAllController{
 
     @Autowired
     private IOrdersService  ordersService;
@@ -51,12 +51,9 @@ public class OrdersController {
     public ModelAndView findAllPages(
        @RequestParam(value="page",required =true,defaultValue ="1") Integer page,
        @RequestParam(value ="pageSize",required =true,defaultValue ="3") Integer pageSize) throws Exception {
-        ModelAndView mv=new ModelAndView();
         List<Orders> ordersList = ordersService.findAllOrders(page, pageSize);
         PageInfo pi=new PageInfo(ordersList);
-        mv.addObject("pi",pi);
-        mv.setViewName("orders-list");
-        return mv;
+        return find(pi,"pi","orders-list");
     }
 
     /**

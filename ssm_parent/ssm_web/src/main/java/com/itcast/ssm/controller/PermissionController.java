@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("permission")
-public class PermissionController {
+public class PermissionController extends FindAllController {
     @Autowired
     private IPermissionService permissionService;
 
@@ -23,15 +23,8 @@ public class PermissionController {
      */
     @RequestMapping("findAll")
     public ModelAndView findAll(){
-
-        ModelAndView mv=new ModelAndView();
-
         List<Permission> permissionList=permissionService.findAll();
-
-        mv.addObject("permissionList",permissionList);
-        mv.setViewName("permission-list1");
-
-        return mv;
+        return findAll(permissionList,"list","permission-list");
     }
 
     /**
@@ -58,14 +51,7 @@ public class PermissionController {
 
     @RequestMapping("findddd")
     public @ResponseBody List<Permission> findddd(){
-
-
-
         List<Permission> permissionList=permissionService.findAll();
-
-
-
-
         return permissionList;
     }
 

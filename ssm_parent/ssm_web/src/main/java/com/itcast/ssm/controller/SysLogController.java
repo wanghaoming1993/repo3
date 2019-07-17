@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("sysLog")
-public class SysLogController {
+public class SysLogController extends FindAllController {
     @Autowired
     private ISysService sysService;
 
@@ -20,10 +20,7 @@ public class SysLogController {
     @RequestMapping("findAll")
     public ModelAndView findAll(){
         List<SysLog> sysLogList=sysService.findAll();
-        ModelAndView mv=new ModelAndView();
-        mv.addObject("sysLogList",sysLogList);
-        mv.setViewName("syslog-list");
-        return mv;
+        return findAll(sysLogList,"sysLogList","syslog-list");
     }
 
 

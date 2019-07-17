@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("user")
-public class UserInfoController {
+public class UserInfoController extends FindAllController {
     @Autowired
     private IUserService userService;
 
@@ -27,15 +27,12 @@ public class UserInfoController {
      * @return
      */
 
-    @PreAuthorize("authentication.principal.username=='zhangsan'")
+
     @RequestMapping("findAll")
     public ModelAndView findAll(){
 
       List<UserInfo> userInfoList=userService.findAll();
-      ModelAndView mv=new ModelAndView();
-      mv.addObject("userList",userInfoList);
-      mv.setViewName("user-list");
-      return mv;
+      return findAll(userInfoList,"userList","user-list");
     }
 
     /**

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("role")
-public class RoleController {
+public class RoleController extends FindAllController {
     @Autowired
     private IRoleService roleService;
 
@@ -25,15 +25,8 @@ public class RoleController {
      */
     @RequestMapping("findAll")
     public ModelAndView findAll(){
-
-        ModelAndView mv=new ModelAndView();
-
         List<Role> roleList=roleService.findAll();
-
-        mv.addObject("roleList",roleList);
-        mv.setViewName("role-list");
-
-        return mv;
+        return findAll(roleList,"list","role-list");
     }
 
     /**

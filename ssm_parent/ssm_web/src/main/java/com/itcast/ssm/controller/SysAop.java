@@ -48,9 +48,7 @@ public class SysAop {
          clazz=jp.getTarget().getClass();//要访问的类
         String methodName = jp.getSignature().getName();//方法名
         Object[] args = jp.getArgs();//方法的参数
-
         if (args==null||args.length==0){
-
             method = clazz.getMethod(methodName);
         }else{
             Class[] classArgs=new Class[args.length];
@@ -78,6 +76,7 @@ public class SysAop {
             }
         }
     }
+
         //获取当前超过的用户名
         SecurityContext context = SecurityContextHolder.getContext();
         User user =(User) context.getAuthentication().getPrincipal();
